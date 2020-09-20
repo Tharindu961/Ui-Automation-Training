@@ -60,21 +60,21 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	 */
 	@Test(groups = { "test", "regression", "smoke"}, priority = 3)
 	public void testVerifyCheckBox() {
-        //Todo - Verify HomePage is displayed
-        //Todo - Click Check Box Link
-        //Todo - Wait Till Page Loads
-        //Todo - Verify Check Box 1 is displayed
-        //Todo - Verify Check Box 2 is displayed
-        //Todo - Check Check Box 1
-        //Todo - Verify Check Box 1 is Checked
-        //Todo - Uncheck Check Box 1
-        //Todo - Verify Check Box 1 is Unchecked
-        //Todo - Check Check Box 2
-        //Todo - Verify Check Box 2 is Checked
-        //Todo - Uncheck Check Box 2
-        //Todo - Verify Check Box 2 is Unchecked
-        //Todo - Navigate Back to Home Page
-        //Todo - Verify HomePage is displayed
+		//Todo - Verify HomePage is displayed
+		//Todo - Click Check Box Link
+		//Todo - Wait Till Page Loads
+		//Todo - Verify Check Box 1 is displayed
+		//Todo - Verify Check Box 2 is displayed
+		//Todo - Check Check Box 1
+		//Todo - Verify Check Box 1 is Checked
+		//Todo - Uncheck Check Box 1
+		//Todo - Verify Check Box 1 is Unchecked
+		//Todo - Check Check Box 2
+		//Todo - Verify Check Box 2 is Checked
+		//Todo - Uncheck Check Box 2
+		//Todo - Verify Check Box 2 is Unchecked
+		//Todo - Navigate Back to Home Page
+		//Todo - Verify HomePage is displayed
 
 		softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
 		HomePage.clickLink(Constants.CHECK_BOX_LINK);
@@ -99,14 +99,14 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	 */
 	@Test(groups = { "test", "regression"}, priority = 4)
 	public void testVerifyDropDown() {
-        //Todo - Verify HomePage is displayed
-        //Todo - Click Drop Down Link
-        //Todo - Wait Till Page Loads
-        //Todo - Verify Drop Down is displayed
-        //Todo - Select Drop Down Option 1
-        //Todo - Verify Drop Down Option 1 selected
-        //Todo - Select Drop Down Option 2
-        //Todo - Verify Drop Down Option 2 selected
+		//Todo - Verify HomePage is displayed
+		//Todo - Click Drop Down Link
+		//Todo - Wait Till Page Loads
+		//Todo - Verify Drop Down is displayed
+		//Todo - Select Drop Down Option 1
+		//Todo - Verify Drop Down Option 1 selected
+		//Todo - Select Drop Down Option 2
+		//Todo - Verify Drop Down Option 2 selected
 
 		softAssert = new SoftAssert();
 		softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
@@ -124,11 +124,11 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	 */
 	@Test(groups = { "test", "regression", "smoke"}, priority = 5)
 	public void testVerifyForgotPassword() {
-        //Todo - Verify HomePage is displayed
-        //Todo - Click Forgot Password Link
-        //Todo - Set Sample Mail
-        //Todo - Click Submit
-        //Todo - Verify Forgot Password Message
+		//Todo - Verify HomePage is displayed
+		//Todo - Click Forgot Password Link
+		//Todo - Set Sample Mail
+		//Todo - Click Submit
+		//Todo - Verify Forgot Password Message
 
 		softAssert = new SoftAssert();
 		softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
@@ -144,17 +144,36 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	 */
 	@Test(groups = "test", priority = 6)
 	public void testVerifyLogin() {
-        //Todo - Verify HomePage is displayed
-        //Todo - Click Login Link
-        //Todo - Set Username and Password
-        //Todo - Click Submit
-        //Todo - Verify Login Secure Page Displayed
-        //Todo - Verify Login Alert Displayed
-        //Todo - Verify Login  Alert Message Content
-        //Todo - Click Logout
-        //Todo - Verify Login Page Displayed
-        //Todo - Verify Logout Alert Displayed
-        //Todo - Verify Logout  Alert Message Content
+		//Todo - Verify HomePage is displayed
+		//Todo - Click Login Link
+		//Todo - Set Username and Password
+		//Todo - Click Submit
+		//Todo - Verify Login Secure Page Displayed
+		//Todo - Verify Login Alert Displayed
+		//Todo - Verify Login  Alert Message Content
+		//Todo - Click Logout
+		//Todo - Verify Login Page Displayed
+		//Todo - Verify Logout Alert Displayed
+		//Todo - Verify Logout  Alert Message Content
+
+		softAssert = new SoftAssert();
+		softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
+		HomePage.clickLink(Constants.LOGIN_LINK);
+		LoginPage.setUsername(Constants.LOGIN_USER_NAME);
+		LoginPage.setPassword(Constants.LOGIN_PASSWORD);
+		LoginPage.clickSubmit();
+
+		softAssert.assertTrue(LoginSecurePage.isLoginSecurePageDisplayed(),"Login Secure Page is not displayed");
+		softAssert.assertTrue(LoginSecurePage.isLoginAlertDisplayed(),"Login Alert is not displayed");
+		softAssert.assertTrue(LoginSecurePage.getLoginAlertMessage().contains(Constants.LOGIN_SUCCESS_MSG),"Login Alert message is incorrect");
+		LoginSecurePage.clickLogout();
+
+		softAssert.assertTrue(LoginPage.isLoginPageDisplayed(),"Login Page is not displayed");
+		softAssert.assertTrue(LoginPage.isAlertDisplayed(),"Logout Alert is not displayed");
+		softAssert.assertTrue(LoginPage.getAlertMessage().contains(Constants.LOGOUT_SUCCESS_MSG),"Logout message is incorrect");
+		softAssert.assertAll();
+
+
 	}
 
 	/**
@@ -162,11 +181,21 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	 */
 	@Test(groups = "test", priority = 7)
 	public void testVerifyInvalidLogin() {
-        //Todo - Verify HomePage is displayed
-        //Todo - Click Login Link
-        //Todo - Set Invalid Username and Password
-        //Todo - Click Submit
-        //Todo - Verify Invalid Login Alert Displayed
-        //Todo - Verify Invalid Login  Alert Message Content
+		//Todo - Verify HomePage is displayed
+		//Todo - Click Login Link
+		//Todo - Set Invalid Username and Password
+		//Todo - Click Submit
+		//Todo - Verify Invalid Login Alert Displayed
+		//Todo - Verify Invalid Login  Alert Message Content
+
+		softAssert = new SoftAssert();
+		softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
+		HomePage.clickLink(Constants.LOGIN_LINK);
+		LoginPage.setUsername(Constants.LOGIN_INVALID_USER_NAME);
+		LoginPage.setPassword(Constants.LOGIN_INVALID_PASSWORD);
+		LoginPage.clickSubmit();
+		softAssert.assertTrue(LoginPage.isAlertDisplayed(),"Login Alert is not displayed");
+		softAssert.assertTrue(LoginPage.getAlertMessage().contains(Constants.LOGIN_INVALID_MSG),"Login message is incorrect");
+		softAssert.assertAll();
 	}
 }
